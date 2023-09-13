@@ -2,14 +2,12 @@ import React from 'react';
 import {
   View,
 } from 'react-native';
-import TShirtContainer from './components/container/TShirtContainer';
+import HomeScreen from './components/screens/HomeScreen';
 
 const App = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-       <View style={styles.container}>
-        <TShirtContainer />
-      </View>
+        <HomeScreen />
     </View>
   );
 };

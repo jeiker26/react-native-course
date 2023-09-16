@@ -1,14 +1,16 @@
 {
     "items": [{
         "id": "GGOEAFKA087499",
-        "name": "Android Small Removable Sticker Sheet",
+        "name": "Android Small Removable Sticker",
         "description": "Show your Android pride by placing these 8 fun stickers on your technology products or accessories!",
         "features": "<p>8 Android stickers</p>\n<p>White colored sticker sheet</p>",
         "price": "2.99",
         "keywords": "Android Small Removable Sticker Sheet, android stickers, sticker sheets, removable sticker sheets, small sticker sheet, android small sticker sheets, Android Sheet",
         "url": "Android+Small+Removable+Sticker+Sheet",
         "category": "accessories",
-        "subcategory": "accessories"
+        "subcategory": "accessories",
+        "stock": 5,
+        "image": "https://cdn.phonehouse.es/res_static/cmsmaker/D6EE2F8339BEC9E0EFD1B9F4756E2045.jpg?auto=format"
     },
     {
         "id": "GGOEGHBL101999",
@@ -19,7 +21,9 @@
         "keywords": "Google Twill Sandwich Cap Navy, cap",
         "url": "Google+Twill+Sandwich+Cap+Navy",
         "category": "apparel",
-        "subcategory": "apparel"
+        "subcategory": "apparel",
+        "stock": 0,
+        "image": "https://cdn.phonehouse.es/res_static/cat-destacadas/apple.png?auto=format"
     },
     {
         "id": "GGOEYDHB098499",
@@ -30,7 +34,9 @@
         "keywords": "YouTube 25 oz Gear Cap Bottle Black, bottle",
         "url": "YouTube+25oz+Gear+Cap+Bottle+Black",
         "category": "drinkware",
-        "subcategory": "drinkware"
+        "subcategory": "drinkware",
+        "stock": 3,
+        "image": "https://cdn.phonehouse.es/res_static/cat-destacadas/carcasas.png?auto=format"
     },
     {
         "id": "GGOEYHBB102199",
@@ -41,6 +47,7 @@
         "keywords": "YouTube Twill Sandwich Cap Black, cap",
         "url": "YouTube+Twill+Sandwich+Cap+Black",
         "category": "apparel",
+        "stock": 5,
         "subcategory": "apparel"
     },
     {
@@ -52,6 +59,7 @@
         "keywords": "YouTube Icon Pullover Black, pullover, hoodie",
         "url": "YouTube+Icon+Pullover+Black",
         "category": "apparel",
+        "stock": 5,
         "subcategory": "apparel"
     },
     {
@@ -63,6 +71,7 @@
         "keywords": "YouTube Wordmark Crew Grey, YouTube, sweatshirt",
         "url": "YouTube+Wordmark+Crew+Grey",
         "category": "apparel",
+        "stock": 5,
         "subcategory": "apparel"
     }
     ]

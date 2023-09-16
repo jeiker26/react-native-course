@@ -4,9 +4,9 @@ import {
   Text,
   View,
   StyleSheet,
-  TouchableOpacity,
   Alert
 } from 'react-native';
+import CustomButton from './CustomButton';
 
 const ProductCard = ({ item, addToCart }) => {
     return (
@@ -14,24 +14,28 @@ const ProductCard = ({ item, addToCart }) => {
             <Image style={styles.image} src={item.image} />
             <Text style={styles.name}>{item.name}</Text>  
             <Text style={styles.description}>{item.description}</Text>
-            <Text style={styles.price}>{item.id} €</Text>
+            <Text style={styles.price}>{item.price} €</Text>
 
-            <TouchableOpacity
+            <CustomButton
                 onPress={() => {
                     Alert.alert('Alert', 'Item añadido a la cesta');
                     addToCart(item);
                 }}
-                style={styles.button}
+                disabled={item.stock > 0}
             >
-                <Text style={{ fontSize: 18, color: 'white' }}>Comprar</Text>
-            </TouchableOpacity>
+                {item.stock > 0 ? 
+                    (<Text style={{ fontSize: 18, color: 'white' }}>Agotado</Text>)
+                    :
+                    (<Text style={{ fontSize: 18, color: 'white' }}>Comprar</Text>)
+                }
+            </CustomButton>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: 16,
+        padding: 8,
         backgroundColor: '#fff',
         borderRadius: 8,
         shadowColor: '#000',
@@ -42,7 +46,6 @@ const styles = StyleSheet.create({
             height: 2,
         },
         elevation: 4,
-        margin: 8
     },
     image: {
         width: '100%',

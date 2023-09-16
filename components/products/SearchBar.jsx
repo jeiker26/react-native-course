@@ -8,6 +8,7 @@ import {
   ScrollView
 } from 'react-native';
 import ProductCard from './ProductCard';
+import List from './List';
 import CartCounter from './CartCounter';
 
 const SearchBar = () => {
@@ -25,19 +26,22 @@ const SearchBar = () => {
         placeholder="Buscar productos"
       />
       <ScrollView style={styles.container}>
-        {filteredProducts.map(product => (
-          <ProductCard
-            key={product.id} 
-            item={{
-              ...product,
-              image: 'https://picsum.photos/seed/picsum/200/300'
-            }}
-            addToCart={item => setCartItems([...cartItems, {
-              ...item,
-              quantity: 1
-            }])} 
-          />
-        ))}
+        <List>
+          {filteredProducts.map(product => (
+            <List.Item key={product.id} >
+              <ProductCard
+                item={{
+                  ...product,
+                  image: product.image ? product.image : 'https://picsum.photos/seed/picsum/200/300'
+                }}
+                addToCart={item => setCartItems([...cartItems, {
+                  ...item,
+                  quantity: 1
+                }])} 
+              />
+            </List.Item>
+          ))}
+        </List>
       </ScrollView>
     </View>
   );

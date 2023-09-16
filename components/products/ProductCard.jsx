@@ -8,16 +8,19 @@ import {
   Alert
 } from 'react-native';
 
-const TShirt = ({ name, description, price, image }) => {
+const ProductCard = ({ item, addToCart }) => {
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={image} />
-            <Text style={styles.name}>{name}</Text>  
-            <Text style={styles.description}>{description}</Text>
-            <Text style={styles.price}>{price} €</Text>
+            <Image style={styles.image} src={item.image} />
+            <Text style={styles.name}>{item.name}</Text>  
+            <Text style={styles.description}>{item.description}</Text>
+            <Text style={styles.price}>{item.id} €</Text>
 
             <TouchableOpacity
-                onPress={() => Alert.alert('Alert', 'Item añadido a la cesta')}
+                onPress={() => {
+                    Alert.alert('Alert', 'Item añadido a la cesta');
+                    addToCart(item);
+                }}
                 style={styles.button}
             >
                 <Text style={{ fontSize: 18, color: 'white' }}>Comprar</Text>
@@ -39,9 +42,10 @@ const styles = StyleSheet.create({
             height: 2,
         },
         elevation: 4,
+        margin: 8
     },
     image: {
-        width: 200,
+        width: '100%',
         height: 200,
         resizeMode: 'cover',
         borderRadius: 8,
@@ -70,4 +74,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TShirt;
+export default ProductCard;

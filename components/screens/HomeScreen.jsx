@@ -4,14 +4,15 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
-import camiseta from '../../assets/img/tshirt.png';
-import TShirt from '../products/TShirt';
+// rimport CartCounter from '../products/CartCounter';
+// <CartCounter cartItems={3}/>
+import SearchBar from '../products/SearchBar';
 
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Home Screen</Text>
-            <TShirt name={'Camiseta'} description={'Camiseta blanca'} price={10} image={camiseta} />
+            <Text style={styles.title}>Shop</Text>
+            <SearchBar />
         </View>
     );
 }

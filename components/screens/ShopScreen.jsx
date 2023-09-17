@@ -5,24 +5,24 @@ import {
     StyleSheet,
     Button,
 } from 'react-native';
-import InputButtonScreen from '../products/InputButtonScreen';
+import SearchBar from '../products/SearchBar';
 
-const HomeScreen = ({ navigation }) => {
+const ShopScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Bienvenido a la "Tienda"</Text>
+            <Text style={styles.title}>Shop</Text>
+            <SearchBar />
             <Button
-                title="Ver tienda"
-                onPress={() => navigation.navigate('Shop')}
+                title="Ver carrito"
+                onPress={() => navigation.navigate('Cart')}
             />
-            <InputButtonScreen />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 8,
     },
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeScreen;
+export default ShopScreen;

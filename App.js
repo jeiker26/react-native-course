@@ -1,14 +1,22 @@
 import React from 'react';
-import {
-  View,
-} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/screens/HomeScreen';
+import ShopScreen from './components/screens/ShopScreen';
+import ShoppingCartScreen from './components/screens/ShoppingCartScreen';
+
+	
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <HomeScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Shop" component={ShopScreen} />
+        <Stack.Screen name="Cart" component={ShoppingCartScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

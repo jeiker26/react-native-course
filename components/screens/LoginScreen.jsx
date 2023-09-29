@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
+import {Button, TextInput, View} from 'react-native';
+import {useSetRecoilState} from 'recoil';
+import {authState} from '../state/auth';
 
-function LoginScreen({setIsAuthenticated}) {
+function LoginScreen() {
+  const setAuthState = useSetRecoilState(authState);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    if (username === 'user' && password === 'password') {
-      setIsAuthenticated(true);
+    if (password === 'admin') {
+      setAuthState({userId: username, isLoggedIn: true});
     }
   };
 

@@ -1,9 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Alert} from 'react-native';
-import CustomButton from '../../../products/CustomButton';
+import {View, Text, StyleSheet, Image, Alert, Button} from 'react-native';
+import CustomButton from '../../../../products/CustomButton';
+import {useSetRecoilState} from 'recoil';
+import {wishlistState} from '../../../../state/wishlist';
+import {cartState} from '../../../../state/cart';
 
-const ProductDetailScreen = ({route, addToCart}) => {
-  const {product, handleAddCart} = route.params;
+const ProductDetailScreen = ({route}) => {
+  const {product} = route.params;
+  const setWishlist = useSetRecoilState(wishlistState);
+  const setCartlist = useSetRecoilState(cartState);
+
+  const handleAddToWishlist = () => {
+    setWishlist(oldWishlist => [...oldWishlist, product]);
+  };
+
+  const handleAddToCartlist = () => {
+    setCartlist(oldCartlist => [...oldCartlist, product]);
+  };
 
   return (
     <View style={styles.container}>
@@ -17,7 +30,7 @@ const ProductDetailScreen = ({route, addToCart}) => {
       <CustomButton
         onPress={() => {
           Alert.alert('Alert', 'Item añadido a la cesta');
-          handleAddCart(product);
+          handleAddToCartlist();
         }}
         disabled={product.stock > 0}>
         {product.stock > 0 ? (
@@ -26,6 +39,14 @@ const ProductDetailScreen = ({route, addToCart}) => {
           <Text style={{fontSize: 18, color: 'white'}}>Comprar</Text>
         )}
       </CustomButton>
+
+      <Button
+        title="Añadir a fav"
+        onPress={() => {
+          Alert.alert('Alert', 'Item añadido a la cesta');
+          handleAddToWishlist();
+        }}
+      />
     </View>
   );
 };

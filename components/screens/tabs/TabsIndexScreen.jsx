@@ -1,23 +1,28 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './home/HomeScreen';
 import CartScreen from './cart/CartScreen';
-import ListIndexScreen from './list/ListIndexScreen';
+import ProductListDrawerScreen from './list/ProductListDrawerScreen';
+import {useRecoilValue} from 'recoil';
+import {cartState} from '../../state/cart';
 
 const Tab = createBottomTabNavigator();
 
 const TabsIndexScreen = () => {
+  const cartItems = useRecoilValue(cartState);
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen
         name="ShopNavigator"
-        component={ListIndexScreen}
+        component={ProductListDrawerScreen}
         options={{headerShown: false}}
       />
-      <Tab.Screen name="Cart" component={CartScreen} />
+      <Tab.Screen
+        name={'Cart (' + cartItems.length + ')'}
+        component={CartScreen}
+      />
     </Tab.Navigator>
   );
 };

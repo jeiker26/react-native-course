@@ -1,18 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {useRecoilValue} from 'recoil';
+import {cartState} from '../../../state/cart';
+import {wishlistState} from '../../../state/wishlist';
 
 const CartScreen = () => {
-  const cartItems = [
-    {id: '1', name: 'Product 1', quantity: 1},
-    {id: '2', name: 'Product 2', quantity: 1},
-    {id: '3', name: 'Product 3', quantity: 5},
-    {id: '4', name: 'Product 4', quantity: 2},
-    {id: '5', name: 'Product 5', quantity: 1},
-  ];
+  const cartItems = useRecoilValue(cartState);
+  const wishItems = useRecoilValue(wishlistState);
+
   const renderItem = ({item}) => (
-    <Text style={{fontSize: 18, padding: 8}}>
-      {item.name} x {item.quantity}
-    </Text>
+    <Text style={{fontSize: 18, padding: 8}}>{item.name}</Text>
   );
 
   return (
@@ -20,6 +17,13 @@ const CartScreen = () => {
       <Text style={styles.title}>Shopping cart</Text>
       <FlatList
         data={cartItems}
+        keyExtractor={item => item.id}
+        renderItem={renderItem}
+      />
+
+      <Text style={styles.title}>Lista de deseos</Text>
+      <FlatList
+        data={wishItems}
         keyExtractor={item => item.id}
         renderItem={renderItem}
       />
@@ -41,18 +45,3 @@ const styles = StyleSheet.create({
 });
 
 export default CartScreen;
-
-/* import { useState } from 'react';
-
-function ShoppingCart() {
-  const [cartItems, setCartItems] = useState([]);
-
-  const addItemToCart = (newItem) => {
-    setCartItems(prevCartItems => [...prevCartItems, newItem]);
-  }
-
-  const removeItemFromCart = (itemId) => {
-    setCartItems(prevCartItems => prevCartItems.filter(item => item.id !== itemId));
-  }
-
-} */

@@ -1,8 +1,22 @@
 import React from 'react';
-import {Image, Text, View, StyleSheet, Alert} from 'react-native';
+import {Image, Text, View, StyleSheet, Alert, Button} from 'react-native';
+import {useSetRecoilState} from 'recoil';
 import CustomButton from './CustomButton';
+import {wishlistState} from '../state/wishlist';
+import {cartState} from '../state/cart';
 
-const ProductCard = ({item, addToCart}) => {
+const ProductCard = ({item}) => {
+  const setWishlist = useSetRecoilState(wishlistState);
+  const setCartlist = useSetRecoilState(cartState);
+
+  const handleAddToWishlist = () => {
+    setWishlist(oldWishlist => [...oldWishlist, item]);
+  };
+
+  const handleAddToCartlist = () => {
+    setCartlist(oldCartlist => [...oldCartlist, item]);
+  };
+
   return (
     <View style={styles.container}>
       <Image style={styles.image} src={item.image} />
@@ -11,10 +25,7 @@ const ProductCard = ({item, addToCart}) => {
       <Text style={styles.price}>{item.price} €</Text>
 
       <CustomButton
-        onPress={() => {
-          Alert.alert('Alert', 'Item añadido a la cesta');
-          addToCart(item);
-        }}
+        onPress={() => handleAddToCartlist()}
         disabled={item.stock > 0}>
         {item.stock > 0 ? (
           <Text style={{fontSize: 18, color: 'white'}}>Agotado</Text>
@@ -22,6 +33,14 @@ const ProductCard = ({item, addToCart}) => {
           <Text style={{fontSize: 18, color: 'white'}}>Comprar</Text>
         )}
       </CustomButton>
+
+      <Button
+        title="Añadir a fav"
+        onPress={() => {
+          Alert.alert('Alert', 'Item añadido a la cesta');
+          handleAddToWishlist();
+        }}
+      />
     </View>
   );
 };

@@ -59,4 +59,14 @@ public class MainApplication extends Application implements ReactApplication {
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
+
+     @Override
+     public List<NativeModule> createNativeModules(
+             ReactApplicationContext reactContext) {
+         List<NativeModule> modules = new ArrayList<>();
+
+         modules.add(new PermissionsModule(reactContext));
+
+         return modules;
+     }
 }

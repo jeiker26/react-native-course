@@ -1,11 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import HomeScreen from './home/HomeScreen';
-import CartScreen from './cart/CartScreen';
-import ProductListDrawerScreen from './list/ProductListDrawerScreen';
+import HomeScreen from './tabs/home/HomeScreen';
+import CartScreen from './tabs/cart/CartScreen';
+import ProductListDrawerScreen from './tabs/list/ProductListDrawerScreen';
 import {useRecoilValue} from 'recoil';
-import {cartState} from '../../state/cart';
+import {cartState} from '../state/cart';
+import ProfileNavigatorScreen from './tabs/profile/ProfileNavigatorScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,13 +16,18 @@ const TabsIndexScreen = () => {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen
-        name="ShopNavigator"
+        name="Shop"
         component={ProductListDrawerScreen}
         options={{headerShown: false}}
       />
       <Tab.Screen
         name={'Cart (' + cartItems.length + ')'}
         component={CartScreen}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileNavigatorScreen}
+        options={{headerShown: false}}
       />
     </Tab.Navigator>
   );

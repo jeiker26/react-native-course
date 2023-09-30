@@ -1,12 +1,15 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import IndexScreen from './components/screens/IndexScreen';
 import {RecoilRoot} from 'recoil';
+import {NavigationContainer} from '@react-navigation/native';
+import TabsIndexScreen from './components/screens/TabsIndexScreen';
 
 export default function App() {
   return (
     <RecoilRoot>
-      <IndexScreen />
+      <NavigationContainer>
+        <TabsIndexScreen />
+      </NavigationContainer>
     </RecoilRoot>
   );
 }

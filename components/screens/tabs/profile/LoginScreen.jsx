@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, TextInput, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
-import {authState} from '../state/auth';
+import {authState} from '../../../state/auth';
 
 function LoginScreen() {
   const setAuthState = useSetRecoilState(authState);

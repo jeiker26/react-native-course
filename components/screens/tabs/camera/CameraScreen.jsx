@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 
-const CameraScreen = ({navigation}) => {
+const CameraScreen = ({}) => {
   const camera = useRef(null);
   const device = useCameraDevice('back');
 

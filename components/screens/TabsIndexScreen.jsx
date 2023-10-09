@@ -7,6 +7,7 @@ import ProductListDrawerScreen from './tabs/list/ProductListDrawerScreen';
 import {useRecoilValue} from 'recoil';
 import {cartState} from '../state/cart';
 import ProfileNavigatorScreen from './tabs/profile/ProfileNavigatorScreen';
+import CameraScreen from './tabs/camera/CameraScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,7 @@ const TabsIndexScreen = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="CameraScreen" component={CameraScreen} />
       <Tab.Screen
         name="Shop"
         component={ProductListDrawerScreen}

@@ -1,20 +1,39 @@
 import React from 'react';
 import {Image, Text, View, StyleSheet, Alert, Button} from 'react-native';
-import {useSetRecoilState} from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import CustomButton from './CustomButton';
 import {wishlistState} from '../state/wishlist';
 import {cartState} from '../state/cart';
 
-const ProductCard = ({item}) => {
+const ProductCard = ({item, shortDescription = false}) => {
   const setWishlist = useSetRecoilState(wishlistState);
-  const setCartlist = useSetRecoilState(cartState);
+  const [cartList, setCartlist] = useRecoilState(cartState);
 
   const handleAddToWishlist = () => {
     setWishlist(oldWishlist => [...oldWishlist, item]);
   };
 
-  const handleAddToCartlist = () => {
-    setCartlist(oldCartlist => [...oldCartlist, item]);
+  console.log(cartList);
+  const handleAddToCartlist = productToAdd => {
+    const existingProduct = cartList.filter(
+      item => item.id === productToAdd.id,
+    );
+
+    let cartAux = [...cartList];
+    if (existingProduct.length) {
+      cartAux = cartAux.map(item => {
+        if (item.id === productToAdd.id) {
+          return {
+            ...item,
+            units: item.units + 1,
+          };
+        }
+      });
+    } else {
+      cartAux = [...cartAux, {...productToAdd, units: 1}];
+    }
+
+    setCartlist(cartAux);
   };
 
   return (
@@ -25,9 +44,9 @@ const ProductCard = ({item}) => {
       <Text style={styles.price}>{item.price} €</Text>
 
       <CustomButton
-        onPress={() => handleAddToCartlist()}
-        disabled={item.stock > 0}>
-        {item.stock > 0 ? (
+        onPress={() => handleAddToCartlist(item)}
+        disabled={item.stock < 0}>
+        {item.stock < 0 ? (
           <Text style={{fontSize: 18, color: 'white'}}>Agotado</Text>
         ) : (
           <Text style={{fontSize: 18, color: 'white'}}>Comprar</Text>

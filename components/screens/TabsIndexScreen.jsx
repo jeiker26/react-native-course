@@ -14,14 +14,25 @@ const TabsIndexScreen = () => {
   const cartItems = useRecoilValue(cartState);
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
       <Tab.Screen
         name="Shop"
         component={ProductListDrawerScreen}
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name={'Cart (' + cartItems.length + ')'}
+        name={
+          'Cart (' +
+          cartItems.reduce(
+            (total, product) => total + (product?.units || 0),
+            0,
+          ) +
+          ')'
+        }
         component={CartScreen}
       />
       <Tab.Screen

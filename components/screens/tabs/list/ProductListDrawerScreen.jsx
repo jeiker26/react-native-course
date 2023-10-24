@@ -1,16 +1,23 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
 import FiltersScreen from './subscreen/FiltersScreen';
 import ListIndexScreen from './subscreen/ListIndexScreen';
 
-const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 const ProductListDrawerScreen = () => {
   return (
-    <Drawer.Navigator initialRouteName="ProductsList">
-      <Drawer.Screen name="ProductsList" component={ListIndexScreen} />
-      <Drawer.Screen name="Filters" component={FiltersScreen} />
-    </Drawer.Navigator>
+    <Stack.Navigator initialRouteName="ProductsList">
+      <Stack.Screen
+        name="ProductsList"
+        component={ListIndexScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Filters"
+        component={FiltersScreen}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 };
 

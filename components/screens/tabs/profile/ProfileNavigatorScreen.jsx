@@ -23,7 +23,7 @@ const ProfileNavigatorScreen = ({navigation}) => {
   return (
     <Stack.Navigator>
       {!data.isLoggedIn ? (
-        <Stack.Screen name="Login">
+        <Stack.Screen name="Login" options={{headerShown: false}}>
           {props => <LoginScreen {...props} />}
         </Stack.Screen>
       ) : (

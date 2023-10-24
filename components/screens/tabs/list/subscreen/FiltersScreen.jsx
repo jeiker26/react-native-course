@@ -1,9 +1,9 @@
 import React from 'react';
 import {useRecoilState} from 'recoil';
 import {filterState} from '../../../../state/filter';
-import {StyleSheet, View} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 import CheckBox from 'react-native-check-box';
-const FiltersScreen = () => {
+const FiltersScreen = ({navigation}) => {
   const [filters, setFilters] = useRecoilState(filterState);
 
   const handleFilterChange = (filter, value) => {
@@ -21,6 +21,12 @@ const FiltersScreen = () => {
           leftText={filterName}
         />
       ))}
+      <Button
+        title="Aplicar filtros"
+        onPress={() => {
+          navigation.push('ProductsList');
+        }}
+      />
     </View>
   );
 };

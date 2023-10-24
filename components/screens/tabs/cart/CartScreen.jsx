@@ -10,9 +10,11 @@ import {
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {cartState} from '../../../state/cart';
 import {wishlistState} from '../../../state/wishlist';
+import {authState} from '../../../state/auth';
 
-const CartScreen = () => {
+const CartScreen = ({navigation}) => {
   const [productsInCart, setProductsInCart] = useRecoilState(cartState);
+  const user = useRecoilValue(authState);
   const wishItems = useRecoilValue(wishlistState);
 
   const calculateTotal = () => {
@@ -23,8 +25,8 @@ const CartScreen = () => {
   };
 
   const removeProductFromCart = productId => {
-    setProductsInCart([
-      ...productsInCart.filter(product => product.id !== productId),
+    setProductsInCart(oldProducts => [
+      ...oldProducts.filter(product => product.id !== productId),
     ]);
   };
 
@@ -59,12 +61,31 @@ const CartScreen = () => {
           </TouchableOpacity>
         </View>
       ))}
-      <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Total: {calculateTotal()}€</Text>
-        <TouchableOpacity style={styles.buyButton}>
-          <Text style={styles.buyButtonText}>Comprar Todo</Text>
-        </TouchableOpacity>
-      </View>
+      {productsInCart.length ? (
+        <View style={styles.totalContainer}>
+          <Text style={styles.totalText}>Total: {calculateTotal()}€</Text>
+          <TouchableOpacity
+            style={styles.buyButton}
+            onPress={() => {
+              if (user?.userId) {
+                navigation.navigate('Payment');
+              } else {
+                navigation.navigate('Login');
+              }
+            }}>
+            <Text style={styles.buyButtonText}>
+              {user?.userId ? 'Comprar Todo' : 'Login'}
+            </Text>
+          </TouchableOpacity>
+          {!user?.userId && (
+            <Text style={styles.totalText}>
+              Por favor, antes de comprar tienes que hacer login
+            </Text>
+          )}
+        </View>
+      ) : (
+        <Text>El carrito está vacío.</Text>
+      )}
     </ScrollView>
   );
 };
@@ -114,7 +135,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     padding: 10,
-    marginTop: 10,
+    marginTop: 30,
   },
   buyButtonText: {
     color: 'white',

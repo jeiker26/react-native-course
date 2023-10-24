@@ -2,13 +2,13 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './tabs/home/HomeScreen';
-import CartScreen from './tabs/cart/CartScreen';
 import ProductListDrawerScreen from './tabs/list/ProductListDrawerScreen';
 import {useRecoilValue} from 'recoil';
 import {cartState} from '../state/cart';
 import ProfileNavigatorScreen from './tabs/profile/ProfileNavigatorScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {authState} from '../state/auth';
+import CartNavigatorScreen from './tabs/cart/CartNavigatorScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -57,7 +57,7 @@ const TabsIndexScreen = () => {
           ) +
           ')'
         }
-        component={CartScreen}
+        component={CartNavigatorScreen}
       />
       <Tab.Screen
         name={user?.id ? 'Profile' : 'Login'}

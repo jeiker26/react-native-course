@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const ProfileNavigatorScreen = ({navigation}) => {
   const data = useRecoilValue(authState);
 
-  const goToLogin = () => navigation.navigate('Login');
+  const goToLogin = () => navigation.navigate('LoginPage');
 
   useEffect(() => {
     if (!data.isLoggedIn) {
@@ -23,7 +23,7 @@ const ProfileNavigatorScreen = ({navigation}) => {
   return (
     <Stack.Navigator>
       {!data.isLoggedIn ? (
-        <Stack.Screen name="Login" options={{headerShown: false}}>
+        <Stack.Screen name="LoginPage" options={{headerShown: false}}>
           {props => <LoginScreen {...props} />}
         </Stack.Screen>
       ) : (

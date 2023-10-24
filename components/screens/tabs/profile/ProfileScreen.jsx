@@ -1,16 +1,7 @@
 import React, {useEffect} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  Switch,
-  TextInput,
-  Image,
-} from 'react-native';
+import { View, Text, StyleSheet, Button, Switch, TextInput, Alert } from "react-native";
 import {useRecoilState} from 'recoil';
 import {authState} from '../../../state/auth';
-import ImagePicker from 'react-native-image-picker';
 
 const ProfileScreen = ({navigation}) => {
   const [user, setUser] = useRecoilState(authState);
@@ -39,15 +30,16 @@ const ProfileScreen = ({navigation}) => {
     };
   }, []);
 
-  const selectImage = () => {
-    ImagePicker.showImagePicker({}, response => {
-      if (!response.didCancel && !response.error) {
-        setUser({...user, profileImage: response.uri});
-      }
-    });
-  };
+  // const selectImage = () => {
+  //   ImagePicker.showImagePicker({}, response => {
+  //     if (!response.didCancel && !response.error) {
+  //       setUser({...user, profileImage: response.uri});
+  //     }
+  //   });
+  // };
 
   const saveProfile = () => {
+    Alert.alert('Perfil guradado con existo!');
     // Implementa la lógica de guardar el perfil aquí
   };
 
@@ -56,13 +48,13 @@ const ProfileScreen = ({navigation}) => {
       <View style={styles.userFormContainer}>
         <Text style={styles.title}>Bienvenido {user.userId}</Text>
 
-        {user.profileImage && (
-          <Image
-            source={{uri: user.profileImage}}
-            style={styles.profileImage}
-          />
-        )}
-        <Button title="Seleccionar Foto" onPress={selectImage} />
+        {/*{user.profileImage && (*/}
+        {/*  <Image*/}
+        {/*    source={{uri: user.profileImage}}*/}
+        {/*    style={styles.profileImage}*/}
+        {/*  />*/}
+        {/*)}*/}
+        {/*<Button title="Seleccionar Foto" onPress={selectImage} />*/}
         <Text style={styles.label}>Nombre:</Text>
         <TextInput
           value={user.name}
@@ -145,8 +137,10 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
+    minWidth: '100%',
     padding: 10,
     borderWidth: 1,
+    borderRadius: 8,
     borderColor: 'white',
     backgroundColor: '#444',
     color: 'white',

@@ -8,7 +8,6 @@ const ProductDetailScreen = ({route}) => {
   const {product} = route.params;
   const [cartList, setCartlist] = useRecoilState(cartState);
 
-  console.log(cartList);
   const handleAddToCartlist = () => {
     const existingProduct = cartList.filter((item) => item?.id === product?.id);
 
@@ -28,6 +27,7 @@ const ProductDetailScreen = ({route}) => {
     }
 
     setCartlist(cartAux);
+    Alert.alert('Producto añadido al carrito');
   };
 
   return (

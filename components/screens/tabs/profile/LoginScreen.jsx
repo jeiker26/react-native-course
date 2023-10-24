@@ -14,10 +14,14 @@ const LoginScreen = () => {
   const setAuthState = useSetRecoilState(authState);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   const handleLogin = () => {
-    if (password === 'admin') {
+    setError(false);
+    if (password === 'admin' && username) {
       setAuthState({userId: username, isLoggedIn: true});
+    } else {
+      setError(true);
     }
   };
 
@@ -43,6 +47,11 @@ const LoginScreen = () => {
       <TouchableOpacity style={styles.primaryButton} onPress={handleLogin}>
         <Text style={styles.primaryButtonText}>Iniciar sesión</Text>
       </TouchableOpacity>
+      {error && (
+        <Text style={styles.errorText}>
+          Error! La contraseña es "admin" y debes poner algo en el usuario
+        </Text>
+      )}
       {/*<TouchableOpacity style={styles.secondaryButton}>*/}
       {/*  <Text style={styles.secondaryButtonText}>Registrarse</Text>*/}
       {/*</TouchableOpacity>*/}
@@ -62,6 +71,9 @@ const styles = StyleSheet.create({
     height: '50%', // Ajusta el tamaño a tu necesidad
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  errorText: {
+    color: 'red',
   },
   logo: {
     width: 300,

@@ -4,8 +4,8 @@ import {
   Text,
   View,
   StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+  TouchableOpacity, Alert,
+} from "react-native";
 import {useRecoilState} from 'recoil';
 import CustomButton from './CustomButton';
 import {wishlistState} from '../state/wishlist';
@@ -21,8 +21,10 @@ const ProductCard = ({item, shortDescription = false}) => {
       setWishlist(oldWishlist => [
         ...oldWishlist.filter(wi => wi.id !== item.id),
       ]);
+      Alert.alert('Producto borrado de la lista de deseos');
     } else {
       setWishlist(oldWishlist => [...oldWishlist, item]);
+      Alert.alert('Producto añadido a la lista de deseos');
     }
   };
 
@@ -51,6 +53,7 @@ const ProductCard = ({item, shortDescription = false}) => {
     } else {
       cartAux = [...cartAux, {...productToAdd, units: 1}];
     }
+    Alert.alert('Producto añadido al carrito');
 
     setCartlist(cartAux);
   };

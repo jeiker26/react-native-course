@@ -35,11 +35,9 @@ const ProductCard = ({item, shortDescription = false}) => {
   };
 
   const handleAddToCartlist = productToAdd => {
-    const existingProduct = cartList.filter(
-      item => item.id === productToAdd.id,
-    );
+    const existingProduct = cartList.filter((item) => item?.id === productToAdd?.id);
 
-    let cartAux = [...cartList];
+    let cartAux = [...cartList.filter(i => !!i)];
     if (existingProduct.length) {
       cartAux = cartAux.map(item => {
         if (item.id === productToAdd.id) {
@@ -48,6 +46,7 @@ const ProductCard = ({item, shortDescription = false}) => {
             units: item.units + 1,
           };
         }
+        return item;
       });
     } else {
       cartAux = [...cartAux, {...productToAdd, units: 1}];

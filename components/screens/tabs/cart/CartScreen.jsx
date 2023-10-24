@@ -16,20 +16,37 @@ const CartScreen = () => {
   const wishItems = useRecoilValue(wishlistState);
 
   const calculateTotal = () => {
-    return productsInCart.reduce((total, product) => total + product.price * product.units, 0);
+    return productsInCart.reduce(
+      (total, product) => total + product.price * product.units,
+      0,
+    );
   };
 
   const removeProductFromCart = productId => {
     setProductsInCart([
-      ...productsInCart.filter((product) => product.id !== productId)
+      ...productsInCart.filter(product => product.id !== productId),
     ]);
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {wishItems.map(product => (
+        <View style={styles.productItem} key={product.id}>
+          <Image src={product.image} style={styles.productImage} />
+          <View style={styles.productInfo}>
+            <Text>{product.name}</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.removeButton}
+            onPress={() => removeProductFromCart(product.id)}>
+            <Text style={styles.removeButtonText}>Eliminar</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+
       {productsInCart.map(product => (
         <View style={styles.productItem} key={product.id}>
-          <Image source={product.image} style={styles.productImage} />
+          <Image src={product.image} style={styles.productImage} />
           <View style={styles.productInfo}>
             <Text>{product.name}</Text>
             <Text>Unidades: {product.units}</Text>
@@ -62,10 +79,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     margin: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    paddingBottom: 15,
   },
   productImage: {
     width: 50,
     height: 50,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 8,
   },
   productInfo: {
     flex: 1,

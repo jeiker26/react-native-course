@@ -8,10 +8,11 @@ const ProductDetailScreen = ({route}) => {
   const {product} = route.params;
   const [cartList, setCartlist] = useRecoilState(cartState);
 
+  console.log(cartList);
   const handleAddToCartlist = () => {
-    const existingProduct = cartList.filter(item => item.id === product.id);
+    const existingProduct = cartList.filter((item) => item?.id === product?.id);
 
-    let cartAux = [...cartList];
+    let cartAux = [...cartList.filter(i => !!i)];
     if (existingProduct.length) {
       cartAux = cartAux.map(item => {
         if (item.id === product.id) {
@@ -20,6 +21,7 @@ const ProductDetailScreen = ({route}) => {
             units: item.units + 1,
           };
         }
+        return item;
       });
     } else {
       cartAux = [...cartAux, {...product, units: 1}];

@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import ProductCard from '../../../products/ProductCard';
-import productsData from '../../../data/productsData.json';
-import List from '../../../products/List';
-const HomeScreen = ({navigation}) => {
+
+const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <Image
@@ -17,14 +15,6 @@ const HomeScreen = ({navigation}) => {
           amplia gama de camisetas temáticas para todos los entusiastas de la
           cultura friki.
         </Text>
-        <Text style={styles.sectionTitle}>Productos Destacados</Text>
-        <List>
-          {productsData.items.map(product => (
-            <List.Item key={product.id}>
-              <ProductCard navigation={navigation} item={product} shortDescription />
-            </List.Item>
-          ))}
-        </List>
       </View>
     </ScrollView>
   );

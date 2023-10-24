@@ -1,19 +1,39 @@
 import React from 'react';
-import {Image, Text, View, StyleSheet, Alert, Button} from 'react-native';
-import {useRecoilState, useSetRecoilState} from 'recoil';
+import {
+  Image,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import {useRecoilState} from 'recoil';
 import CustomButton from './CustomButton';
 import {wishlistState} from '../state/wishlist';
 import {cartState} from '../state/cart';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ProductCard = ({item, shortDescription = false}) => {
-  const setWishlist = useSetRecoilState(wishlistState);
+  const [wishlist, setWishlist] = useRecoilState(wishlistState);
   const [cartList, setCartlist] = useRecoilState(cartState);
 
   const handleAddToWishlist = () => {
-    setWishlist(oldWishlist => [...oldWishlist, item]);
+    if (wishlist.filter(wi => wi.id === item.id).length) {
+      setWishlist(oldWishlist => [
+        ...oldWishlist.filter(wi => wi.id !== item.id),
+      ]);
+    } else {
+      setWishlist(oldWishlist => [...oldWishlist, item]);
+    }
   };
 
-  console.log(cartList);
+  const getIfExistInWishlist = item => {
+    if (wishlist.filter(wi => wi.id === item.id).length) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleAddToCartlist = productToAdd => {
     const existingProduct = cartList.filter(
       item => item.id === productToAdd.id,
@@ -41,25 +61,34 @@ const ProductCard = ({item, shortDescription = false}) => {
       <Image style={styles.image} src={item.image} />
       <Text style={styles.name}>{item.name}</Text>
       <Text style={styles.description}>{item.description}</Text>
-      <Text style={styles.price}>{item.price} €</Text>
 
-      <CustomButton
-        onPress={() => handleAddToCartlist(item)}
-        disabled={item.stock < 0}>
-        {item.stock < 0 ? (
-          <Text style={{fontSize: 18, color: 'white'}}>Agotado</Text>
-        ) : (
-          <Text style={{fontSize: 18, color: 'white'}}>Comprar</Text>
-        )}
-      </CustomButton>
+      <View style={styles.buttonsContainer}>
+        <Text style={styles.price}>{item.price} €</Text>
 
-      <Button
-        title="Añadir a fav"
-        onPress={() => {
-          Alert.alert('Alert', 'Item añadido a la cesta');
-          handleAddToWishlist();
-        }}
-      />
+        <CustomButton
+          onPress={() => handleAddToCartlist(item)}
+          disabled={item.stock <= 0}>
+          {item.stock <= 0 ? (
+            <Ionicons name={'close'} size={17} color="white" />
+          ) : (
+            <Ionicons name={'add-sharp'} size={17} color="white" />
+          )}
+        </CustomButton>
+
+        <TouchableOpacity
+          style={styles.favButton}
+          onPress={() => {
+            handleAddToWishlist();
+          }}>
+          <Ionicons
+            name={
+              getIfExistInWishlist(item) ? 'heart-dislike' : 'heart-outline'
+            }
+            size={17}
+            color="white"
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -101,10 +130,20 @@ const styles = StyleSheet.create({
     color: '#4caf50',
     marginBottom: 8,
   },
+  favButton: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+  },
   button: {
     backgroundColor: 'green',
     padding: 10,
     borderRadius: 5,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    verticalAlign: 'center',
   },
 });
 

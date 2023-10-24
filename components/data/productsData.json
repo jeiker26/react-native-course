@@ -6,7 +6,7 @@
             "description": "Camiseta con diseño de Star Wars.",
             "price": 20.99,
             "stock": 10,
-            "tags": ["Star Wars", "Frikie", "Camiseta"],
+            "tags": ["Star_Wars", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/cargando_paciencia--id:1f822aab-264f-4fd8-bb11-ae5a0b482443;s:H_A1;b:f2f2f2;w:520;f:f;i:1356233641384135623201709261.jpg"
         },
         {
@@ -15,7 +15,7 @@
             "description": "Camiseta con diseños de superhéroes.",
             "price": 18.99,
             "stock": 5,
-            "tags": ["Superhéroes", "Frikie", "Camiseta"],
+            "tags": ["Superheroes", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/ud_esta_aqui_-_sistema_solar--id:7aadf932-6663-4bd6-bb1b-73dcfe7fb31d;s:H_A21;b:f2f2f2;w:520;f:f;i:13562336683971356232017092621.jpg"
         },
         {
@@ -24,7 +24,7 @@
             "description": "Camiseta temática de Game of Thrones.",
             "price": 22.99,
             "stock": 0,
-            "tags": ["Game of Thrones", "Frikie", "Camiseta"],
+            "tags": ["Game_of_Thrones", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/estoy_pensando_espera--id:e8e770d9-4b8b-4571-a608-a7ee7f9b1b27;s:H_A1;b:f2f2f2;w:520;f:f;i:1356238550852135623201709261.jpg",
         },
         {
@@ -33,7 +33,7 @@
             "description": "Camiseta con diseño de Mario Bros.",
             "price": 19.99,
             "stock": 8,
-            "tags": ["Mario Bros", "Frikie", "Camiseta"],
+            "tags": ["Mario_Bros", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/estoy_pensando_espera--id:e8e770d9-4b8b-4571-a608-a7ee7f9b1b27;s:H_A1;b:f2f2f2;w:520;f:f;i:1356238550852135623201709261.jpg",
         },
         {
@@ -47,11 +47,11 @@
         },
         {
             "id": 6,
-            "name": "Camiseta Doctor Who",
+            "name": "Camiseta_Doctor_Who",
             "description": "Camiseta inspirada en Doctor Who.",
             "price": 23.99,
             "stock": 3,
-            "tags": ["Doctor Who", "Frikie", "Camiseta"],
+            "tags": ["Doctor_Who", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/estoy_pensando_espera--id:e8e770d9-4b8b-4571-a608-a7ee7f9b1b27;s:H_A1;b:f2f2f2;w:520;f:f;i:1356238550852135623201709261.jpg",
         },
         {
@@ -78,7 +78,7 @@
             "description": "Camiseta con temática de Star Trek.",
             "price": 22.99,
             "stock": 1,
-            "tags": ["Star Trek", "Frikie", "Camiseta"],
+            "tags": ["Star_Trek", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/estoy_pensando_espera--id:e8e770d9-4b8b-4571-a608-a7ee7f9b1b27;s:H_A1;b:f2f2f2;w:520;f:f;i:1356238550852135623201709261.jpg",
         },
         {
@@ -87,7 +87,7 @@
             "description": "Camiseta inspirada en The Big Bang Theory.",
             "price": 19.99,
             "stock": 7,
-            "tags": ["Big Bang Theory", "Frikie", "Camiseta"],
+            "tags": ["Big_Bang_Theory", "Frikie", "Camiseta"],
             "image": "https://srv.latostadora.com/image/estoy_pensando_espera--id:e8e770d9-4b8b-4571-a608-a7ee7f9b1b27;s:H_A1;b:f2f2f2;w:520;f:f;i:1356238550852135623201709261.jpg",
         }
     ]

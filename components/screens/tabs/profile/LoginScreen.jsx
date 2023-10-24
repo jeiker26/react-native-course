@@ -43,9 +43,9 @@ const LoginScreen = () => {
       <TouchableOpacity style={styles.primaryButton} onPress={handleLogin}>
         <Text style={styles.primaryButtonText}>Iniciar sesión</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.secondaryButton}>
-        <Text style={styles.secondaryButtonText}>Registrarse</Text>
-      </TouchableOpacity>
+      {/*<TouchableOpacity style={styles.secondaryButton}>*/}
+      {/*  <Text style={styles.secondaryButtonText}>Registrarse</Text>*/}
+      {/*</TouchableOpacity>*/}
     </View>
   );
 };

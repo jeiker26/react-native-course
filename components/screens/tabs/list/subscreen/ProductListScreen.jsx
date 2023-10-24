@@ -28,9 +28,12 @@ const ProductListScreen = ({navigation}) => {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const products = useProductSearch(debouncedSearchTerm);
 
-  // Todo: refactor filter by tags
   const filteredProducts = appliedFilters.length
-    ? products.filter(p => appliedFilters.some(tag => p.tags.includes(tag)))
+    ? products.filter(p =>
+        appliedFilters.some(tag => {
+          return p.tags.includes(tag);
+        }),
+      )
     : products;
 
   return (
@@ -83,18 +86,26 @@ const ProductListScreen = ({navigation}) => {
 
       <ScrollView>
         <List>
-          {filteredProducts.map(product => (
-            <List.Item key={product.id}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Product', {
-                    product,
-                  })
-                }>
-                <ProductCard navigation={navigation} item={product} />
-              </TouchableOpacity>
-            </List.Item>
-          ))}
+          {filteredProducts.length ? (
+            <>
+              {filteredProducts.map(product => (
+                <List.Item key={product.id}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('Product', {
+                        product,
+                      })
+                    }>
+                    <ProductCard navigation={navigation} item={product} />
+                  </TouchableOpacity>
+                </List.Item>
+              ))}
+            </>
+          ) : (
+            <Text style={styles.emptyText}>
+              No se han encontrado resultados.
+            </Text>
+          )}
         </List>
       </ScrollView>
     </View>
@@ -106,6 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(34,36,40,1)',
     padding: 10,
+    marginBottom: 50,
   },
   filtersContainer: {
     flexDirection: 'row',
@@ -136,6 +148,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 8,
     marginBottom: 10,
+  },
+  emptyText: {
+    borderWidth: 2,
+    borderColor: 'black',
+    backgroundColor: 'white',
+    borderRadius: 8,
+    marginBottom: 10,
+    padding: 15,
+    marginTop: 50,
+    marginLeft: 65,
   },
 });
 
